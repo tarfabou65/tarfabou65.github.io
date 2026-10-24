@@ -1,0 +1,89 @@
+/* Atelier des jeux — site public.
+ * Mise en page : une colonne alignée à gauche (max 46rem) ; bandeau cobalt en tête, corps couleur sable.
+ * Titres en Gelasio (dessin compatible avec la police Georgia du titre des jeux), texte en police système. */
+:root {
+  --cobalt: #1f4e9c;
+  --cobalt-deep: #163b78;
+  --sand: #f6eedf;
+  --paper: #fffbf3;
+  --ink: #26252d;
+  --muted: #6b5f4f;
+  --line: #e1d2b6;
+  --saffron: #d99412;
+  --display: 'Gelasio', Georgia, 'Noto Serif', serif;
+  --body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sand: #18171d;
+    --paper: #221f28;
+    --ink: #efe9df;
+    --muted: #b6a993;
+    --line: #3a3443;
+    --cobalt: #8fb2f0;
+    --cobalt-deep: #142d5c;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--sand); color: var(--ink); font: 17px/1.6 var(--body); }
+a { color: var(--cobalt); text-underline-offset: 3px; }
+a:focus-visible, .button:focus-visible { outline: 3px solid var(--saffron); outline-offset: 3px; border-radius: 6px; }
+img { max-width: 100%; height: auto; display: block; }
+
+.wrap { max-width: 46rem; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+
+/* Bandeau : le nom du studio, posé sur un rang de « tuiles » dessinées en CSS. */
+.band { background: #1f4e9c; color: #fff; }
+@media (prefers-color-scheme: dark) { .band { background: var(--cobalt-deep); } }
+.band .wrap { padding-block: 28px 0; }
+.studio { font-family: var(--display); font-weight: 700; font-size: 1.15rem; color: #fff; text-decoration: none; letter-spacing: .01em; }
+.tiles { display: flex; gap: 6px; margin-top: 22px; height: 14px; overflow: hidden; }
+.tiles span { flex: 0 0 26px; height: 26px; border-radius: 6px; background: rgba(255, 255, 255, .14); }
+.tiles span:nth-child(3n) { background: #d99412; }
+.tiles span:nth-child(5n) { background: #c4532f; }
+.tiles span:nth-child(7n) { background: rgba(255, 255, 255, .32); }
+
+main .wrap { padding-block: 40px 56px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(2.1rem, 7vw, 3rem); margin: 0 0 .4em; color: var(--cobalt); }
+h2 { font-size: 1.5rem; margin: 2em 0 .5em; }
+h3 { font-size: 1.15rem; margin: 1.6em 0 .3em; }
+p, li { max-width: 38rem; }
+.lead { font-size: 1.2rem; color: var(--muted); margin-top: 0; }
+
+/* Fiche d'un jeu sur l'accueil */
+.game { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: start; background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 22px; margin-top: 28px; }
+.game img { width: 96px; height: 96px; border-radius: 22px; }
+.game h2 { margin: 0 0 .2em; }
+.game p { margin: 0 0 .6em; }
+.game .links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-weight: 600; }
+
+/* Page d'un jeu */
+.hero { display: grid; grid-template-columns: 1fr minmax(0, 15rem); gap: 32px; align-items: center; }
+.hero-text { min-width: 0; }
+.hero .icon { width: 84px; height: 84px; border-radius: 20px; margin-bottom: 18px; }
+.phone { border-radius: 28px; border: 8px solid var(--paper); box-shadow: 0 18px 40px rgba(40, 28, 16, .22); overflow: hidden; }
+.button { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 14px; background: #1f4e9c; color: #fff; font-weight: 700; text-decoration: none; }
+.button[aria-disabled="true"] { background: var(--paper); color: var(--muted); border: 1px dashed var(--line); }
+.note { font-size: .95rem; color: var(--muted); }
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+.shots img { border-radius: 18px; border: 1px solid var(--line); }
+.rules { padding-left: 1.2em; }
+.rules li { margin: .3em 0; }
+
+/* Politique de confidentialité */
+.policy section { border-top: 1px solid var(--line); margin-top: 40px; }
+.policy .lang-switch { display: flex; gap: 16px; font-weight: 600; }
+.updated { color: var(--muted); font-size: .95rem; }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 22px 32px; color: var(--muted); font-size: .95rem; display: flex; flex-wrap: wrap; gap: 8px 20px; }
+
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero .phone { max-width: 15rem; }
+  .game { grid-template-columns: 64px 1fr; gap: 14px; padding: 18px; }
+  .game img { width: 64px; height: 64px; border-radius: 15px; }
+}
